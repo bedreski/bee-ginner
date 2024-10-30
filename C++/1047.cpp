@@ -1,34 +1,50 @@
 #include<iostream>
-#include <map>
 
-using std::cin;
-using std::copy;
-using std::cout;
-using std::endl;
-using std::map;
-using std::string;
 using namespace std;
-
-template <typename Map>
-void PrintMap(Map& m) {
-  cout << "[ ";
-  for (auto& item : m) {
-    cout << item.first << ":" << item.second << " ";
-  }
-  cout << "]\n";
-}
 
 int main() {
     //Um jogo tem duração mínima de 1 minuto e no máximo de 24 horas
     int minutoInicial, minutoFinal, horaInicial, horaFinal, totalHorasJogo, totalMinutosJogo = 0;
-    map<int, string> horasDoDia;
 
     cin >> horaInicial >> minutoInicial  >> horaFinal >> minutoFinal ;
 
-    //intervalo do dia valendo 24 horas
+    if(minutoInicial >= 1 && minutoFinal <= 60 && (horaInicial >= 1 * horaFinal <= 24)) {
 
-    
 
-    //cout << "O JOGO DUROU " << totalHorasJogo << " HORA (S) E " << totalMinutosJogo << " MINUTO (S) " << endl;
+        if(horaFinal == horaInicial && minutoFinal == minutoInicial) {
+            totalHorasJogo = 24;
+
+        } else {
+
+            if(horaFinal > horaInicial && minutoFinal > minutoInicial) {
+                totalHorasJogo = horaFinal - horaInicial;
+                totalMinutosJogo = minutoFinal - minutoInicial;
+
+            } else {
+
+                if(horaFinal > horaInicial && minutoFinal < minutoInicial) {
+                    totalHorasJogo = horaFinal - horaInicial;
+                    totalMinutosJogo = minutoInicial - minutoFinal;
+
+                } else {
+
+                    if(horaFinal < horaInicial && minutoFinal > minutoInicial) {
+                        totalHorasJogo = horaInicial - horaFinal;
+                        totalMinutosJogo = minutoFinal - minutoInicial;
+
+                    } else {
+
+                        if(horaFinal < horaInicial && minutoFinal < minutoInicial) {
+                            totalHorasJogo = horaInicial - horaFinal;
+                            totalMinutosJogo = minutoInicial - minutoFinal;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    cout << "O JOGO DUROU " << totalHorasJogo << " HORA (S) E " << totalMinutosJogo << " MINUTO (S) " << endl;
 
 }
